@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  common:
+    build:
+      context: ./packages/common
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./packages/common:/app
+      - /app/node_modules
+    ports:
+      - 3099:3099
+
+  validator_dummy:
+    build:
+      context: ./validator
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./validator:/app
+      - /app/node_modules
+      - ./packages/common:/app/node_modules/@checkbox/common:ro
+
+  imm_dummy:
+    build:
+      context: ./imm
+      dockerfile: ./Dockerfile
+    ports:
+      - 3001:3001
+    volumes:
+      - ./imm:/app
+      - /app/node_modules
+      - ./packages/common:/app/node_modules/@checkbox/common:ro

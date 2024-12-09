@@ -1,0 +1,12 @@
+{
+    "watch": [
+        "src",
+        "../packages/common/dist"
+    ],
+    "ext": "ts,json",
+    "ignore": [
+        "node_modules"
+    ],
+    "exec": "ts-node ./src/index.ts",
+    "delay": "100ms"
+}
